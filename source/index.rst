@@ -112,11 +112,12 @@ Tutorials
 =========
 
 .. toctree::
-   :maxdepth: 1
+   :hidden:
    
    Pages/Tutorials/MOOC/mooc
    
-* `gLite tutorial 2008`_
+* :ref:`mooc`
+* `gLite tutorial 2008 <http://www.dutchgrid.nl/events/tutorial08/agenda/Tutorial2008Handout.pdf>`_
 
 
 ==========================
@@ -126,7 +127,8 @@ Frequently Asked Questions
 .. toctree::
    :maxdepth: 1
    
-   Pages/FAQ 
+   Pages/FAQ
+   Pages/documentation/index
 
 
 ==================
@@ -137,12 +139,6 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-..
-
-..
-
 .. Links:
 
 .. _`SURFsara`: https://surfsara.nl/
-
-.. _`gLite tutorial 2008`: http://www.dutchgrid.nl/events/tutorial08/agenda/Tutorial2008Handout.pdf
