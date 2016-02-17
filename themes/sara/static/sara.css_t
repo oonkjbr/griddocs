@@ -36,7 +36,7 @@ hr {
 }
  
 div.document {
-    background-color: #DDD;
+    background-color: #E0F4E0;
 }
 
 div.header {
@@ -53,9 +53,9 @@ div.logo {
 div.body {
     background-color: #ffffff;
     color: #3E4349;
-    padding: 0 30px 30px 30px;
+    padding: 0 30px 30px 70px;
     font-size: 1em;
-    border: 2px solid #ddd;
+    border: 1px solid #D0E4D0;
     border-right-style: none;
     overflow: auto;
 }
@@ -79,7 +79,14 @@ div.footer a:hover {
     color: #e88f00;
     text-decoration: underline;
 }
- 
+
+div.contents,
+div.topic,
+div.contents.topic {
+    background: #EAF8EA;
+    border: 1px solid #DAEEDA !important;
+}
+
 div.related {
     line-height: 30px;
     color: #fff;
@@ -107,13 +114,12 @@ div.sphinxsidebarwrapper{
  
 div.sphinxsidebar h3,
 div.sphinxsidebar h4 {
-    font-family: "Neuton", sans-serif;
+    font-family: sans-serif;
     color: #373839;
     font-size: 1.4em;
     font-weight: normal;
     margin: 0;
     padding: 5px 10px;
-    border-bottom: 2px solid #ddd;
 }
 
 div.sphinxsidebar h4{
@@ -157,13 +163,11 @@ div.sphinxsidebar input[type=text]{
 
 div.sidebar {
     margin: 0 0 0.5em 1em;
-    border: 2px solid #c6d880;
-    background-color: #e6efc2;
+    border: 1px solid #ddb;
+    padding: 10px 20px;
+    background-color: #ffe;
     width: 40%;
     float: right;
-    border-right-style: none;
-    border-left-style: none;
-    padding: 10px 20px;
 }
 
 p.sidebar-title {
@@ -171,36 +175,48 @@ p.sidebar-title {
 }
 
 /* -- body styles ----------------------------------------------------------- */
- 
+
+/* General link color */
 a, a .pre {
-    color: #494;
+    color: #373;
     text-decoration: none;
 }
- 
-a:hover, a:hover .pre {
+
+/* Underline links, but only in the body, not in the sidebar TOC */
+div.body a {
     text-decoration: underline;
 }
- 
+
+/* Don't underline links in Contents section */
+div.contents a {
+    text-decoration: none;
+}
+
+/* Color for headers in body */
+div.body h1 a,
+div.body h2 a,
+div.body h3 a,
+div.body h4 a,
+div.body h5 a,
+div.body h6 a, 
 div.body h1,
 div.body h2,
 div.body h3,
 div.body h4,
 div.body h5,
 div.body h6 {
-    font-family: sans-serif;
+    color: #4a4;
+    text-decoration: none;
     background-color: #ffffff;
-    font-weight: normal;
-    color: #373839;
-    margin: 30px 0px 10px 0px;
-    padding: 5px 0;
+    font-weight: bold;
 }
- 
-div.body h1 { border-top: 20px solid white; margin-top: 0; font-size: 200%; }
-div.body h2 { font-size: 150%; background-color: #ffffff; }
-div.body h3 { font-size: 120%; background-color: #ffffff; }
-div.body h4 { font-size: 110%; background-color: #ffffff; }
-div.body h5 { font-size: 100%; background-color: #ffffff; }
-div.body h6 { font-size: 100%; background-color: #ffffff; }
+
+div.body h1 { font-size: 300%; margin-left: -40px; font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; margin-top: 20; }
+div.body h2 { font-size: 220%; margin-left: -40px; font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif; }
+div.body h3 { font-size: 150%; margin-left: -30px; margin-top: 1.6em; }
+div.body h4 { font-size: 120%; margin-left: -20px; margin-top: 2em; }
+div.body h5 { font-size: 110%; margin-left: 0px; }
+div.body h6 { font-size: 100%; margin-left: 0px; }
  
 a.headerlink {
     color: #1b61d6;
@@ -226,37 +242,23 @@ div.highlight{
 }
 
 div.note {
-    border: 2px solid #7a9eec;
-    border-right-style: none;
-    border-left-style: none;
-    padding: 10px 20px 10px 60px;
-    background: #e1ecfe url(dialog-note.png) no-repeat 10px 8px;
+    border: 1px solid #79e;
+    background: #def url(dialog-note.png) no-repeat 12px 15px;
+    padding: 20px 20px 20px 60px;
 }
  
 div.seealso {
-    background: #fff6bf url(dialog-seealso.png) no-repeat 10px 8px;
-    border: 2px solid #ffd324;
-    border-left-style: none;
-    border-right-style: none;
-    padding: 10px 20px 10px 60px;
+    background: #fff6bf url(dialog-seealso.png) no-repeat 12px 15px;
+    border: 1px solid #ffd324;
+    padding: 20px 20px 20px 60px;
 }
- 
-div.topic {
-    background: #eeeeee;
-    border: 2px solid #C6C9CB;
-    padding: 10px 20px;
-    border-right-style: none;
-    border-left-style: none;
-}
- 
+
 div.warning {
-    background: #fbe3e4 url(dialog-warning.png) no-repeat 10px 8px;
-    border: 2px solid #fbc2c4;
-    border-right-style: none;
-    border-left-style: none;
-    padding: 10px 20px 10px 60px;
+    border: 1px solid #fbc2c4;
+    background: #fbe3e4 url(dialog-warning.png) no-repeat 12px 15px;
+    padding: 20px 20px 20px 60px;
 }
- 
+
 p.admonition-title {
     display: none;
 }
@@ -264,19 +266,34 @@ p.admonition-title {
 p.admonition-title:after {
     content: ":";
 }
- 
+
+/* Style for bash code boxes */
 pre {
-    padding: 10px;
-    background-color: #fafafa;
-    color: #222;
-    line-height: 1.2em;
-    border: 2px solid #C6C9CB;
+    padding: 12px 20px;
+    background-color: #E0F4E0;
+    border: 1px solid #D0E4D0;
+    border-left: 10px solid #D0E4D0;
+    line-height: 1.5em;
     font-size: 1.1em;
-    margin: 1.5em 0 1.5em 0;
-    border-right-style: none;
-    border-left-style: none;
 }
- 
+
+/* Inline code text */
+code.docutils.literal {
+    background-color: #E0F4E0;
+    border: 1px solid #D0E4D0;
+    font-size: 1.2em;
+    padding: 0.1em 0.2em 0em 0.2em;
+}
+
+/* Inline code text, when inside a note, warning box or table */
+table code.docutils.literal,
+div.sidebar code.docutils.literal,
+div.admonition code.docutils.literal {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
 tt {
     background-color: transparent;
     color: #222;
@@ -304,6 +321,47 @@ table.highlighttable td {
     padding: 0;
 }
 
+table.docutils td, table.docutils th {
+    padding: 8px  !important;
+    border: 1px solid #aaa !important;
+}
+
+table.docutils th {
+    text-align: center !important;
+}
+
+table.docutils .caption-text {
+    font-style: italic;
+    line-height: 2em;
+}
+
+table.docutils {
+    margin-bottom: 20px  !important;
+}
+
+table.docutils.footnote {
+    border: 0  !important;
+    margin-bottom: 0px  !important;
+}
+
+table.docutils.footnote td {
+    border: 0  !important;
+}
+
+/* If line block is inside a cell, remove weird empty line below it. */
+table.docutils div.line-block {
+    margin-bottom: 0;
+}
+
+table.footnote {
+    border: 0  !important;
+    margin-bottom: 0px  !important;
+}
+
+table.footnote td {
+    border: 0  !important;
+}
+
 a em.std-term {
    color: #007f00;
 }
@@ -313,7 +371,6 @@ a:hover em.std-term {
 }
 
 .download {
-    font-family: "Nobile", sans-serif;
     font-weight: normal;
     font-style: normal;
 }

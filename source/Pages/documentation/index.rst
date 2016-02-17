@@ -19,13 +19,16 @@ This page explains how you can edit the documentation, how to generate HTML docu
 
 When changes are committed using Git and pushed to the SURFsara GitHub repository, the documentation is automatically rebuild and published by readthedocs.org.
 
+We have some :ref:`style guidelines <doc-style>` to encourage a consistent style. But don't worry too much about that: any contribution is welcome.
+
+
 .. _contribute-github:
 
 ===========================
 Contributing through GitHub
 ===========================
 
-You are welcome to add and improve the documentation directly to the repository. For this, you’ll need a GitHub account and a little knowledge on git:
+You are welcome to add and improve the documentation directly to the repository. For this, you’ll need a GitHub account and a little knowledge of git:
 
 1. `Fork <https://help.github.com/articles/fork-a-repo/>`_ our repository
 2. Git pull your fork
@@ -33,12 +36,12 @@ You are welcome to add and improve the documentation directly to the repository.
 4. Create a `pull request <https://help.github.com/articles/proposing-changes-to-a-project-with-pull-requests/>`_ to inform us of your changes
 5. After we’ve reviewed and accepted your work, we will merge your commits and the documentation will be updated automatically
 
-All documentation is written in Sphinx *restructed text*. Behind the scenes we use ReadTheDocs.org to automatically publish the documentation.s Below are some useful links to documentation on these techniques and systems:
+All documentation is written in Sphinx *restructed text*. Behind the scenes we use ReadTheDocs.org to automatically publish the documentation. Below are some useful links to documentation on these techniques and systems:
 
  * A simple Sphinx cheatsheet: :ref:`cheatsheet`
  * `GitHub’s git cheat sheet <https://help.github.com/articles/git-cheatsheet/>`_
 
-However, don’t worry to much about all this new information. You’ll see that Sphinx is quit intuitive. Besides, we will check your changes too. If you find it all too overwhelming anyway, or if you just don’t feel like going through all this hussle, you are always free to just send us an e-mail with your remarks and we will change the documentation ourselves: helpdesk@surfsara.nl
+However, don’t worry too much about all this new information. You’ll see that Sphinx is quite intuitive. Besides, we will check your changes too. If you find it all too overwhelming anyway, or if you just don’t feel like going through all this hustle, you are always free to just send us an e-mail with your remarks and we will change the documentation ourselves: helpdesk@surfsara.nl
 
 .. _overview:
 

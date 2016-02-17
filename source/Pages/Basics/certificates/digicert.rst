@@ -4,11 +4,14 @@
 Digicert certificate
 ********************
 
-This section describes how to obtain and install a Digicert Grid certificate. This is a prerequisite to get started on the Grid:
+This section describes how to obtain and install a Digicert Grid certificate. This is a prerequisite to get started on the Grid.
 
 .. contents:: 
     :depth: 4
-    
+
+.. note::  If you need help to obtain your Digicert certificate, please have a look to this `User Guide`_  or contact us at helpdesk@surfsara.nl.  
+
+
 ===============================
 Obtain a *Digicert* certificate
 ===============================
@@ -24,10 +27,8 @@ DigiCert CA allows you to get your Grid certificate *instantly* from the GEANT T
 .. image:: /Images/digicert_install_cert.png
 	:align: center
 
-.. note::  If you need help to obtain your Digicert certificate, please have a look to this `User Guide`_  or contact us at helpdesk@surfsara.nl.  
-	
 Once finished, you will have a Grid certificate automatically stored in your browser.
-	
+
 
 .. _digicert_ui_install:
 
@@ -56,20 +57,20 @@ Copy certificate *.p12* file to the UI
 
 * Open a terminal and connect to the UI machine with your personal :ref:`UI account <get-ui-account>`:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	ssh homer@ui.grid.sara.nl # replace "homer" with your username!
- 
+
 * Create a ``$HOME/.globus`` directory in your UI account:
 
 
-.. code-block:: bash
+  .. code-block:: bash
 
  	mkdir $HOME/.globus
- 
+
 * If you exported the certificate to your laptop, copy it from your local machine to your ``.globus`` ui directory. If you exported your certificate from the UI browser, you can skip this step: 
- 
-.. code-block:: bash
+
+  .. code-block:: bash
 
     laptop$ scp /PATH-TO-P12-FILE/browsercert.p12 homer@ui.grid.sara.nl:~/.globus  # replace "homer" with your username!
 
@@ -81,24 +82,24 @@ Convert pkcs12 to PEM
 
 a) Extract your key, run on the UI:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    cd $HOME/.globus   
-    openssl pkcs12 -in browsercert.p12 -out userkey.pem -nocerts
+      cd $HOME/.globus   
+      openssl pkcs12 -in browsercert.p12 -out userkey.pem -nocerts
 
 Note that you will first need to enter the password that was used to *create* the browsercert.p12 file. Next, you need to enter a password to protect the exported key. Enter that password again to verify. Note that you must enter a password and the password must be at least 12 characters; if the password is too short, ``openssl`` will fail without error. Using the same password as for the p12 file is fine. 
 
 b) Extract your certificate, run on the UI:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    cd $HOME/.globus 
-    openssl pkcs12 -in browsercert.p12 -out usercert.pem -nokeys
+      cd $HOME/.globus 
+      openssl pkcs12 -in browsercert.p12 -out usercert.pem -nokeys -clcerts
 
 
 * Set the proper permissions to your certificate files:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	chmod 644 usercert.pem
 	chmod 400 userkey.pem
@@ -107,7 +108,7 @@ The certificate and private key file should now be present in the .globus direct
 
 * Verify key permissions:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	cd $HOME/.globus
 	ls -l
@@ -137,12 +138,6 @@ If you receive an SSL authentication error, then try repeating the steps careful
 
     :ref:`cert-subject`
 
-
-..
-
-..
-
-..
 
 .. Links:
 

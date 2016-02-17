@@ -4,7 +4,7 @@
 *fts* client
 ************
 
-This page includes the basic commands to use ``fts``:
+This page includes the basic commands to use ``fts``. For an overview of storage clients, see :ref:`storage-clients`.
 
 .. contents:: 
     :depth: 4
@@ -14,7 +14,7 @@ This page includes the basic commands to use ``fts``:
 FTS
 ===
 
-`FTS3`_ is a file transfer service for reliable file transfers across sites or else, ``third party`` transfers. You cannot use it to transfer files from your local machine to dCache and vice-versa. FTS3 service has been running for years. It was developed by Cern for WLCG data transfers up to petabytes per month. It used to have a dependency on Oracle for the database backend, but nowadays FTS also supports MySQL.
+`FTS3`_ is a file transfer service for reliable file transfers across sites or else, ``third party`` transfers. You cannot use it to transfer files from your local machine to dCache and vice-versa. FTS3 service has been running for years. It was developed by Cern for WLCG data transfers up to petabytes per month.
 
 From the user perspective, it allows data movement, retrying if necessary, monitoring and displaying usage statistics, see `FTS3 wiki`_. From the operations view, it optimises resource usage. 
 
@@ -51,7 +51,9 @@ File transfer - TURL to TURL
 
 .. code-block:: bash
 
-  fts-transfer-submit -s https://fts3.grid.sara.nl:8443 gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/penelope/zap.tar 
+  $ fts-transfer-submit -s https://fts3.grid.sara.nl:8443 \
+        gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar \
+        gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/penelope/zap.tar 
 
 
 File transfer - TURL to TURL
@@ -59,19 +61,23 @@ File transfer - TURL to TURL
 
 .. code-block:: bash
 
-  fts-transfer-submit -s https://fts3.grid.sara.nl:8443 gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/penelope/zap.tar
+  $ fts-transfer-submit -s https://fts3.grid.sara.nl:8443 \
+        gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar \
+        gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/penelope/zap.tar
 
 
 File transfer - srmv2 to srmv2
 ------------------------------
- 
+
 .. code-block:: bash
- 
-  fts-transfer-submit -s https://fts3.grid.sara.nl:8443 srm://srm.grid.sara.nl:8443/srm/managerv2?SFN=/pnfs/grid.sara.nl/data/lsgrid/zap.tar srm://srm.grid.sara.nl:8443/srm/managerv2?SFN=/pnfs/grid.sara.nl/data/lsgrid/penelope/zap.tar
+
+  $ fts-transfer-submit -s https://fts3.grid.sara.nl:8443 \
+        srm://srm.grid.sara.nl:8443/srm/managerv2?SFN=/pnfs/grid.sara.nl/data/lsgrid/zap.tar \
+        srm://srm.grid.sara.nl:8443/srm/managerv2?SFN=/pnfs/grid.sara.nl/data/lsgrid/penelope/zap.tar
 
 .. note:: Combinations between TURLS, SURLS, https and srmv2 are possible.
-  
-  
+
+
 Monitor Status
 ==============
 
@@ -82,7 +88,9 @@ The ``fts-transfer-submit`` command will return instantly an ID for the specific
 
 .. code-block:: bash
 
-	fts-transfer-status -s https://fts3.grid.sara.nl:8443 9e665677-76e5-4734-b729-b69e161da99a # replace the string with your ID
+	$ fts-transfer-status -s https://fts3.grid.sara.nl:8443 \
+	      9e665677-76e5-4734-b729-b69e161da99a
+	# replace the string with your ID
 
 
 Web interface
@@ -94,14 +102,7 @@ You can monitor the transfer status and trace the logging information on this pa
 
 At the moment any jobs are visible to anyone under any VO, but this can be closed by our system administrators upon request, just contact us at helpdesk@surfsara.nl.
 	
-..
 
-..
-
-..	
-	
-	
-	
 .. Links:
 .. _`FTS3`: http://fts3-service.web.cern.ch/
 .. _`FTS3 wiki`: https://svnweb.cern.ch/trac/fts3/wiki/UserGuide

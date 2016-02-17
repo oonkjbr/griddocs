@@ -49,19 +49,19 @@ This section will show you how to create a valid proxy:
 
 * Login to your UI account:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	ssh homer@ui.grid.sara.nl # replace "homer" with your username
 
 * Create a proxy with the following command, run on the UI the following command and provide your grid certificate password when prompted:
 
-.. code-block:: bash
+  .. code-block:: bash
  
 	startGridSession lsgrid  #replace lsgrid with your VO
 
-You should see a similar output displayed in your terminal:
+  You should see a similar output displayed in your terminal:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	# Now starting...
 	# Please enter your GRID password:
@@ -103,7 +103,7 @@ To submit a Grid job you must describe this in a plain text file, called JDL. Op
 * Login to your User Interface. 
 * Create a file with the following content describing the job requirements. Save it as ``simple.jdl``: 
 
-.. code-block:: bash
+  .. code-block:: bash
 	:linenos:
 	
 	Type = "Job";
@@ -134,7 +134,7 @@ Alternatively, use your delegation ID:
 
 	glite-wms-job-list-match -d homer simple.jdl # replace homer with your delegation id, in this case your login name 
 	
-.. note:: The '-a' option should not be used frequently. It creates a proxy of your certificate 'on-the-fly' when the job is submitted; therefore '-a' is quite inefficient when submitting hundreds of jobs.
+.. note:: The ``-a`` option should not be used frequently. It creates a proxy of your certificate 'on-the-fly' when the job is submitted; therefore ``-a`` is quite inefficient when submitting hundreds of jobs.
 
 Your job is now ready. Continue to the next step to submit it to the Grid!
 
@@ -159,7 +159,7 @@ You should have your simple.jdl file ready in your UI up to this point. When you
 
 * Submit the simple job by typing in your UI terminal this command:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-submit -d $USER -o jobIds simple.jdl
 	
@@ -176,10 +176,10 @@ You should have your simple.jdl file ready in your UI up to this point. When you
 
 Note the use of ``-d $USER`` to tell your job that it should use your delegated proxy certificate.	
 	
-The option '-o' allows you to specify a file (in this case ``jobIDs``) to store the unique job identifier:
+The option ``-o`` allows you to specify a file (in this case ``jobIDs``) to store the unique job identifier:
 
 * You can use this URL identifier to monitor your job from the command line or your browser and to get the job output.
-* Note that omitting the -o option means that the jobID is not saved in a file. When you do not save this id you will effectively loose the output of your job!
+* Note that omitting the ``-o`` option means that the jobID is not saved in a file. When you do not save this id you will effectively loose the output of your job!
 
 The jobID string looks like this:
 
@@ -201,13 +201,13 @@ To check the current job status from the command line, apply the following comma
 
 * After submitting the job, type:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-status https://wms2.grid.sara.nl:9000/JIVYfkMxtnRFWweGsx0XAA #replace with your jobID
 
-* Alternatively, if you have saved your jobIds into a file you can use the '-i' option and the filename as argument:
+* Alternatively, if you have saved your jobIds into a file you can use the ``-i`` option and the filename as argument:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-status -i jobIds
 
@@ -225,13 +225,13 @@ Cancel job
 
 * If you realize that you need to cancel a submitted job, use the following command:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-cancel https://wms2.grid.sara.nl:9000/JIVYfkMxtnRFWweGsx0XAA #replace with your jobID
 
 * Alternatively, you can use the jobIDs file:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-cancel -i jobIds
 
@@ -252,13 +252,13 @@ OutputSandbox can be downloaded for approx. one week after the job finishes.
 
 * To get the output, type:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-output https://wms2.grid.sara.nl:9000/JIVYfkMxtnRFWweGsx0XAA #replace with your jobID
 	
 * Alternatively, you can use the jobIDs file:
 	
-.. code-block:: bash
+  .. code-block:: bash
 
 	glite-wms-job-output --dir . -i jobIds
 
@@ -275,9 +275,9 @@ again.
 Check job output
 ================
 
-* To check your job output, browse into the downloaded output directory. This includes the "simple.out", "simple.err" files specified in the OutputSandbox:
+* To check your job output, browse into the downloaded output directory. This includes the ``simple.out``, ``simple.err`` files specified in the OutputSandbox:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	ls -l /home/homer/homer_JIVYfkMxtnRFWweGsx0XAA/
 
@@ -300,7 +300,7 @@ You interact with the Grid via the UI machine ui.grid.sara.nl. You describe each
 This is a short overview of the commands needed to handle simple jobs: 
 
 +---------------------+--------------------------------------------------------+
-| startGridSession    |  ``startGridSession lsgrid``                           |
+| startGridSession    | ``startGridSession lsgrid``                            |
 +---------------------+--------------------------------------------------------+
 | submit job          | ``glite-wms-job-submit -d $USER -o jobIds simple.jdl`` |	    
 +---------------------+--------------------------------------------------------+
@@ -316,11 +316,6 @@ This is a short overview of the commands needed to handle simple jobs:
 
 	Done with the :ref:`basics`, but not sure how to proceed? We can help! Contact us at helpdesk@surfsara.nl.
 
-..
-
-..
-
-..
 
 .. Links:
 

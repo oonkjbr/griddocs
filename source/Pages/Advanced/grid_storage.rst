@@ -5,7 +5,7 @@
 Grid Storage
 ************
 
-In this page we will talk about the Grid storage facilities, the tools to interact with it and the method to process data that is stored on tape (Staging):
+In this page we will talk about the Grid storage facilities, the tools to interact with it and the method to handle data that is stored on tape.
 
 .. contents:: 
     :depth: 4
@@ -23,13 +23,20 @@ You can interact with the Grid storage from the UI or from the worker node, with
 * :ref:`Any local LSG cluster <lsg-clusters>`
 * :ref:`The Dutch Grid <dutch-grid>` 
 
-To use the Grid storage you must already have:
+To use the Grid storage you must:
 
-* :ref:`A personal grid certificate <get-grid-certificate>`
-* :ref:`A VO membership <join-vo>`
+* Have :ref:`a personal grid certificate <get-grid-certificate>` [1]_
+* Be member of :ref:`a VO <join-vo>` for which we have allocated storage space.
 
-In general we do not support direct interaction with the Grid storage. However,
-dCache and DPM support srm and gridftp interfaces, which offer a lot of unix-like commands, like listing, copying, deleting files and so on.
+You can access the Grid storage with grid :ref:`storage-clients`, through interfaces that speak protocols like SRM, gridftp, GSIdCap or webdav. With these storage clients you can:
+
+* list directories and files
+* read (download) files
+* write (upload) files
+* delete files or directories
+* :ref:`stage` files (copy them from tape to disk for faster reading)
+
+.. [1] It is technically possible to access the dCache grid storage without certificate, by using webdav with username/password authentication. We don't recommend this: authentication with username/password is less secure, and webdav is slower than gridftp.
 
 
 .. _storage-types:
@@ -70,12 +77,18 @@ Grid file identifiers
 
 You can refer to your files on the Grid with different ways depending on which of the available :ref:`storage-clients` you use to manage your files: 
 
-* Transport URL or **TURL**, e.g.:
+Transport URL or TURL
+=====================
+
+Examples:
 
 .. code-block:: bash
 
 	# lsgrid user homer stores the file zap.tar on dCache storage
-	gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar 
+	gsiftp://gridftp.grid.sara.nl:2811/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar
+	
+	# same, but with a webdav TURL
+	https://webdav.grid.sara.nl/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar
 	
 	# lsgrid user homer stores the file zap.tar on DPM storage at lumc cluster
 	gsiftp://gb-se-lumc.lumc.nl:2811/dpm/lumc.nl/home/lsgrid/homer/zap.tar
@@ -88,7 +101,10 @@ You can refer to your files on the Grid with different ways depending on which o
 	* fts
 	* globusonline
 
-* Storage URL or **SURL**, e.g.:
+Storage URL or SURL
+===================
+
+Examples:
 
 .. code-block:: bash
 
@@ -103,7 +119,7 @@ You can refer to your files on the Grid with different ways depending on which o
 	* srm
 	* gfal
 	* fts
-	* lcg-lfn-lfc	
+	* lcg-lfn-lfc
 
 
 * Logical File Name (LFN) and Grid Unique Identifier (GUID). These identifiers correspond to logical filename such as ``lfn:/grid/lsgrid/homer/zap.tar``
@@ -120,39 +136,37 @@ Default ports
 dCache
 ------
 
-+------------+--------------------------------------+-------------------------------------------+
-| Protocol   | Host(s) and port(s)                  | Remark                                    |
-+============+======================================+===========================================+
-| SRM        | srm://srm.grid.sara.nl:8443          |                                           |
-+------------+--------------------------------------+-------------------------------------------+
-| gridftp    | gsiftp://gridftp.grid.sara.nl:2811   | Data channel port range: 20000-25000      |
-+------------+--------------------------------------+-------------------------------------------+
-| webdav     | https://webdav.grid.sara.nl:443      | Redirects on read;                        |
-|            |                                      | Authentication with username/password     |
-+            +--------------------------------------+-------------------------------------------+
-|            | https://webdav.grid.sara.nl:2880     | No redirects;                             |
-|            |                                      | Authentication with username/password     |
-+            +--------------------------------------+-------------------------------------------+
-|            | https://webdav.grid.sara.nl:2881     | Redirects;                                |
-|            |                                      | Authentication with user certificate      |
-+------------+--------------------------------------+-------------------------------------------+
-| gsidcap    | gsidcap://gsidcap.grid.sara.nl:22128 |                                           |
-+------------+--------------------------------------+-------------------------------------------+
-| xroot      | xrootd.grid.sara.nl:1094             | Used by CERN only                         |
-+------------+--------------------------------------+-------------------------------------------+
++------------+--------------------------------------+--------------------------------------+
+| Protocol   | Host(s) and port(s)                  | Remark                               |
++============+======================================+======================================+
+| SRM        | srm://srm.grid.sara.nl:8443          |                                      |
++------------+--------------------------------------+--------------------------------------+
+| gridftp    | gsiftp://gridftp.grid.sara.nl:2811   | Data channel port range: 20000-25000 |
++------------+--------------------------------------+--------------------------------------+
+|            | https://webdav.grid.sara.nl:443      |                                      |
++            +--------------------------------------+                                      +
+| webdav     | https://webdav.grid.sara.nl:2880     | See :ref:`webdav` for details        |
++            +--------------------------------------+                                      +
+|            | https://webdav.grid.sara.nl:2881     |                                      |
++------------+--------------------------------------+--------------------------------------+
+| gsidcap    | gsidcap://gsidcap.grid.sara.nl:22128 |                                      |
++------------+--------------------------------------+--------------------------------------+
+| xroot      | xrootd.grid.sara.nl:1094             | Used by CERN only                    |
++------------+--------------------------------------+--------------------------------------+
 
 
 DPM
 ---
 
-* The default ``DPM`` srm port is **8446**::
++------------+--------------------------------------+--------------------------------------+
+| Protocol   | Host(s) and port(s) (examples)       | Remark                               |
++============+======================================+======================================+
+| SRM        | srm://gb-se-lumc.lumc.nl:8446        |                                      |
++------------+--------------------------------------+--------------------------------------+
+| gridftp    | gsiftp://gb-se-lumc.lumc.nl:2811     | Data channel port range: 20000-25000 |
++------------+--------------------------------------+--------------------------------------+
 
-    srm://gb-se-lumc.lumc.nl:8446/...
-  
- 
-* The default ``DPM`` gridftp port is **2811**::
-
-    gsiftp://gb-se-lumc.lumc.nl:2811/...
+For an overview of all life science clusters and their DPM storage elements, see :ref:`lsg-hostnames`
 
 
 .. _storage-clients:
@@ -165,29 +179,34 @@ The InputSandbox and OutputSandbox attributes in the :ref:`JDL <JDL>` file are t
 
 In this section we will show the common commands to use the various storage clients. 
 
-.. note:: From the many Grid storage clients, we recommend you to use :ref:`uberftp` and :ref:`globus` or :ref:`gfal`. These tools have a clean interface, and their speed is much better on our systems compared with their srm-* equivalents.
+.. note:: From the many Grid storage clients, we recommend you to use the :ref:`uberftp`, :ref:`globus` or :ref:`gfal`. These tools have a clean interface, and their speed is much better on our systems compared with their srm-* equivalents.
 
 .. table:: Storage clients
 
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | Client               | SRM  | GridFTP  | GSIdCap  | WebDAV | 3rd party | Speed |
-  +======================+======+==========+==========+========+===========+=======+
-  | :ref:`uberftp`       | --   | yes      | --       | --     | --        | high  |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`globus`        | --   | yes      | --       | --     | --        | high  |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`srm`           | yes  | indirect | indirect | ?      | --        |       |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`gfal`          | yes  | yes      | ?        | ?      | --        |       |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`webdav`        | --   | --       | --       | yes    | --        |       |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`fts`           | yes  | ?        | ?        | ?      | yes       |       |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`globusonline`  | yes  | yes      | ?        | ?      | yes       |       |
-  +----------------------+------+----------+----------+--------+-----------+-------+
-  | :ref:`lcg-lfn-lfc`   | yes  | indirect | ?        | ?      | --        |       |
-  +----------------------+------+----------+----------+--------+-----------+-------+
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  |                     |             protocols            |                                       |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | Client              | SRM | GridFTP | GSIdCap | WebDAV | 3rd party | Speed | Tape control [1]_ |
+  +=====================+=====+=========+=========+========+===========+=======+===================+
+  | :ref:`uberftp`      | --  | yes     | --      | --     | --        | high  | --                |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`globus`       | --  | yes     | --      | --     | --        | high  | --                |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`srm`          | yes | [2]_    | [2]_    | [2]_   | --        |       | yes               |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`gfal`         | yes | yes     | --      | --     | --        |       | yes               |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`webdav`       | --  | --      | --      | yes    | --        |       | --                |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`fts`          | yes | yes     | --      | yes    | yes       | high  | yes               |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`globusonline` | --  | yes     | --      | --     | yes       | high  | --                |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+  | :ref:`lcg-lfn-lfc`  | yes | [2]_    | --      | --     | --        |       | --                |
+  +---------------------+-----+---------+---------+--------+-----------+-------+-------------------+
+
+.. [1] Examples of tape control: staging a file from tape to disk, or get its locality (tape or disk).
+.. [2] SRM and LCG commands use the SRM protocol for metadata level operations and switch to another protocol like GridFTP for file transfers. This may cause protocol overhead. For example, authentication needs to be done twice: once for each protocol.
 
 .. toctree::
    :hidden:
@@ -207,66 +226,95 @@ In this section we will show the common commands to use the various storage clie
 Staging files
 =============
 
-The :ref:`dCache` storage at SURFsara consists of magnetic tape storage and hard disk storage. If your :ref:`quota allocation <quotas>` includes tape storage, then the data stored on magnetic tape has to be copied to a hard drive before it can be used. This action is called :ref:`staging`. 
+The :ref:`dCache` storage at SURFsara consists of magnetic tape storage and hard disk storage. If your :ref:`quota allocation <quotas>` includes tape storage, then the data stored on magnetic tape has to be copied to a hard drive before it can be used. This action is called :ref:`staging` or 'bringing a file online'.
 
-.. topic:: Staging terms
-	
-	**ONLINE** means that the file is only on disk
-	
-	**NEARLINE** means that the file is only on tape
-	
-	**ONLINE_AND_NEARLINE** means that the file is on disk and tape
+.. table:: Staging terms
+
+  +---------------------+-----------------------------------------------------------------+
+  | Locality            | Meaning                                                         |
+  +=====================+=================================================================+
+  | ONLINE              | The file is only on disk                                        |
+  +---------------------+-----------------------------------------------------------------+
+  | NEARLINE            | The file is only on tape; it should be staged before reading it |
+  +---------------------+-----------------------------------------------------------------+
+  | ONLINE_AND_NEARLINE | The file is both on disk and on tape                            |
+  +---------------------+-----------------------------------------------------------------+
 
 
-.. _pin-file:
+.. _staging-single-file:
 
-File pinning example
-====================
+Staging a single file
+=====================
+
+.. note:: For all staging operations you need to have a valid proxy, see :ref:`startgridsession`. 
+
+Here is an example of how to stage a single file:
+
+.. code-block:: bash
+
+	$ srm-bring-online srm://srm.grid.sara.nl/pnfs/grid.sara.nl/data/lsgrid/test
+	srm://srm.grid.sara.nl/pnfs/grid.sara.nl/data/lsgrid/test brought online, use request id 424966221 to release
+
+Don't use this method to stage multiple files. Use the stage.py example below instead, because it is much more efficient.
+
+How to display the locality:
+
+.. code-block:: bash
+
+	$ srmls -l srm://srm.grid.sara.nl/pnfs/grid.sara.nl/data/lsgrid/test | grep locality
+	  locality:ONLINE_AND_NEARLINE
+
+
+
+.. _staging-group-of-files:
+
+Staging groups of files
+=======================
 
 The example below shows how to stage a list of files with known SURLs.
-
-.. note:: To run the example below you need to have a valid proxy, see :ref:`startgridsession`. 
 
 * Copy and untar the tarball :download:`staging scripts </Scripts/staging.tar>` to your UI directory.
 
 * Create a proxy on UI:
 
-.. code-block:: bash
+  .. code-block:: bash
   
-	startGridSession lsgrid  
+	$ startGridSession lsgrid  
 
 * The file paths should be listed in a file called ``files`` with the following format:
 
-.. code-block:: bash
+  .. code-block:: bash
 
 	/pnfs/grid.sara.nl/data/...
 
-Let's say that you have a list of SURLs that you want to stage. Convert the list of SURLs in the datasets/example.txt file to the desired ``/pnfs`` format: 
+  Let's say that you have a list of SURLs that you want to stage. Convert the list of SURLs
+  in the datasets/example.txt file to the desired ``/pnfs`` format: 
 
-.. code-block:: bash
+  .. code-block:: bash
 
-	sed -e "s/srm:\/\/srm.grid.sara.nl:8443//" datasets/example.txt > files
+	$ grep --only-matching '/pnfs/grid.sara.nl.*' datasets/example.txt > files
 
-* Test the status of the files with:
+* Display the locality of the files with:
 
-.. code-block:: bash
+  .. code-block:: bash
 
-	python state.py
+	$ python state.py
 
 
 * Stage the files:  
 
-.. code-block:: bash
+  .. code-block:: bash
 
-	python stage.py
+	$ python stage.py
 
 This script stages a number of files from tape. You can change the pin lifetime in the stage.py script by changing the ``srmv2_desiredpintime`` attribute in seconds.
 
 
-.. monitor-staging:
+
+.. _monitor-staging:
 
 Monitor staging activity
-------------------------
+========================
 
 Once you submit your stage requests, you can use the gfal scripts to monitor the status or check the webpage below that lists all the current staging requests:
 
@@ -276,19 +324,19 @@ Once you submit your stage requests, you can use the gfal scripts to monitor the
 .. _unpin-file:
 
 Unpin a file
-------------
+============
 
-Your files may remain ``ONLINE`` as long as there is free space on the disk pools and then they will be purged for new coming staging requests.
+Your files may remain ``ONLINE`` as long as there is free space on the disk pools. When a pool group is full and free space is needed, dCache will purge the least recently used cached files. The tape replica will remain on tape.
 
-The disk pool where your files are staged has limited capacity and is only meant for data that a user wants to process on a Grid site. When you :ref:`pin a file <pin-file>` you set a `pin lifetime` that, when it expires, causes the data to be released automatically. Then the data may be purged from disk, as soon as the space is required for stage requests.
+The disk pool where your files are staged has limited capacity and is only meant for data that a user wants to process on a Grid site. When you :ref:`pin a file <pin-file>` you set a `pin lifetime`. The file will not be purged until the pin lifetime has expired. Then the data may be purged from disk, as soon as the space is required for new stage requests. When the disk copy has been purged, it has to be staged again in order to be processed on a Worker Node.
 
-Once the data is unpinned, it will remain of course on tape and has to be staged again in order to be processed on a Worker Node. 
+When a pool group is full with pinned files, staging is paused. Stage requests will just wait until pin lifetimes for other files expire. dCache will then use the released space to stage more files until the pool group is full again. When this takes too long, stage requests will time out. So pinning should be used moderately.
 
 When you are done with your processing, we recommend you release (or unpin) all the files that you don't need any more. In order to unpin a file, run from the UI:
 
 .. code-block:: bash
 
-	srm-release-files srm://srm.grid.sara.nl:8443/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar # replace with your SURL
+	$ srm-release-files srm://srm.grid.sara.nl:8443/pnfs/grid.sara.nl/data/lsgrid/homer/zap.tar # replace with your SURL
 
 This command will initiate unpinning of file "zap.tar" (even if you submitted multiple pin requests) and the file will remain cached but purgeable until new requests will claim the available space. It is an optional action, but helps a lot with the effective system usage.
 
