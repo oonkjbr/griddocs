@@ -11,7 +11,7 @@ This section summarises all the steps to submit your first job on the grid, chec
 
 .. warning:: You can continue with this guide *only after* you have completed the :ref:`preparations <preparation>` for Grid. If you skipped that, go back to the :ref:`prerequisites` section. Still need help with obtaining or installing your certificate? We can help! Contact us at helpdesk@surfsara.nl.
 	 
-Once you finish with the :ref:`first-grid-job`, you can continue with more :ref:`advanced` topics and also :ref:`best-practices`, the section that contains guidelines for porting real complex simulations on the Grid. 
+Once you finish with the :ref:`first-grid-job`, you can continue with more :ref:`advanced topics <advanced>` and also :ref:`best-practices`, the section that contains guidelines for porting real complex simulations on the Grid. 
 
 
 .. _job-lifecycle:
@@ -22,13 +22,13 @@ Grid job lifecycle
 		
 .. sidebar:: Grid Job lifecycle
 
-                .. seealso:: Have a look to our mooc video that describes the :ref:`mooc-job-lifecycle` step by step.
+                .. seealso:: Have a look at our mooc video that describes the :ref:`mooc-job-lifecycle` step by step.
 	
 To run your application on the Grid you need to describe its requirements in a specific language called ``job description language`` (JDL). This is similar to the information that we need to specify when we run jobs using a batch scheduling system like :ref:`pbs`, although it is slightly more complex as we are now scheduling jobs across multiple sites.
 
-Except for the application requirements, you also need to specify in the JDL the content of the in/out- put ``sandboxes``. These sandboxes allow you to transfer data to or from the Grid. The input sandbox contains all the files that you want to send with your job to the worker node, like e.g. a script that you want executed. The output sandbox contains all the files that you want to have transferred back to the UI. 
+Except for the application requirements, you also need to specify in the JDL the content of the input/output ``sandboxes``. These sandboxes allow you to transfer data to or from the Grid. The input sandbox contains all the files that you want to send with your job to the worker node, like e.g. a script that you want executed. The output sandbox contains all the files that you want to have transferred back to the UI. 
 
-.. note:: The amount of data that you can transfer using the sandboxes is very limited, in the order of a few mega bytes (less than **100MB**). This means that you should normally limit the input sandbox to a few script files and the output sandbox to the stderr and stdout files.	
+.. note:: The amount of data that you can transfer using the sandboxes is very limited, in the order of a few megabytes (less than **100MB**). This means that you should normally limit the input sandbox to a few script files and the output sandbox to the stderr and stdout files.	
 
 Once you have the jdl ready, you can submit it to multiple clusters with ``glite-*`` commands. The Workload Management System (WMS) will schedule your job on a grid worker node. The purpose of WMS is to distribute and manage tasks across computing resources. More specifically, the WMS will accept your job, assign it to the most appropriate Computing Element (CE), record the job status and retrieve the output. 
 
@@ -85,7 +85,7 @@ This section will show you how to create a valid proxy:
 	* It uploads this proxy to ``Myproxy server``
 	* It ``delegates`` the proxy to the WMS with your user name as the delegation ID (DID)
 	
-	If you want to know more , see the advanced section about :ref:`grid-authentication`.
+	If you want to know more, see the advanced section about :ref:`grid-authentication`.
 
 And now you are ready to submit jobs to the Grid! Or copy data from and to the grid.
 	
@@ -114,7 +114,7 @@ To submit a Grid job you must describe this in a plain text file, called JDL. Op
 	StdError = "simple.err";
 	OutputSandbox = {"simple.out","simple.err"}; 
 
-This job involves no large input or output files. It will return to the user the hostname of the Worker Node that the job will land on. This is specified as the ``StdOutput`` file “simple.out” declared in the OutputSandbox.
+This job involves no large input or output files. It will return to the user the hostname of the Worker Node that the job will land on. This is specified as the ``StdOutput`` file “simple.out” declared in the ``OutputSandbox`` statement.
 
 
 .. _job-match:
@@ -150,12 +150,11 @@ To submit your first Grid job and get an understanding of the job lifecycle, we 
 Submit the job to the Grid
 ==========================
 
-You should have your simple.jdl file ready in your UI up to this point. When you submit this simple Grid job to the WMS, a job will be created and sent to a remote Worker Node. There it will execute the command ``/bin/hostname -f`` and write its standard output and its standard error in the simple.out and simple.err respectively.
-
 .. sidebar:: First Job explained
 
-		.. seealso:: For more detailed information about submitting a simple Grid job, have a look to our mooc video :ref:`mooc-submit-job`.
+		.. seealso:: For more detailed information about submitting a simple Grid job, have a look at our mooc video :ref:`mooc-submit-job`.
 
+You should have your simple.jdl file ready in your UI up to this point. When you submit this simple Grid job to the WMS, a job will be created and sent to a remote Worker Node. There it will execute the command ``/bin/hostname -f`` and write its standard output and its standard error in the simple.out and simple.err respectively.
 
 * Submit the simple job by typing in your UI terminal this command:
 
@@ -242,10 +241,10 @@ Cancel job
 Retrieve the output
 ===================
 
-The output consists of the files included in the OutputSandbox. You can
+The output consists of the files included in the ``OutputSandbox`` statement. You can
 retrieve the job output once it is successfully completed, in other words the
 job status has changed from ``RUNNING`` to ``DONE``. The files in the
-OutputSandbox can be downloaded for approx. one week after the job finishes.
+output sandbox can be downloaded for approx. one week after the job finishes.
 
 .. note:: 
         You can choose the output directory with the ``--dir`` option. If you do not use this option then the output will be copied under the UI ``/scratch`` directory with a name based on the ID of the job.  
@@ -275,7 +274,7 @@ again.
 Check job output
 ================
 
-* To check your job output, browse into the downloaded output directory. This includes the ``simple.out``, ``simple.err`` files specified in the OutputSandbox:
+* To check your job output, browse into the downloaded output directory. This includes the ``simple.out``, ``simple.err`` files specified in the ``OutputSandbox`` statement:
 
   .. code-block:: bash
 
@@ -295,7 +294,7 @@ Congratulations! You have just executed your first job to the Grid!
 
 Let's summarise what we've seen so far.
 
-You interact with the Grid via the UI machine ui.grid.sara.nl. You describe each job in a JDL (Job Description Language) file where you list which program should be executed and what are the worker node requirements. From the UI, you create first a proxy of your grid certificate and submit your job with glite-* commands. The resource broker, called WMS (short for Workload Management System), accepts your jobs, assigns them to the most appropriate CE (Computing Element), records the jobs statuses and retrieves the output. 
+You interact with the Grid via the UI machine ``ui.grid.sara.nl``. You describe each job in a ``JDL`` (Job Description Language) file where you list which program should be executed and what are the worker node requirements. From the UI, you create first a proxy of your grid certificate and submit your job with ``glite-*`` commands. The resource broker, called ``WMS`` (short for Workload Management System), accepts your jobs, assigns them to the most appropriate ``CE`` (Computing Element), records the jobs statuses and retrieves the output. 
 
 This is a short overview of the commands needed to handle simple jobs: 
 
@@ -312,7 +311,7 @@ This is a short overview of the commands needed to handle simple jobs:
 +---------------------+--------------------------------------------------------+
 
 
-.. seealso:: Try now to port your own application to the Grid. Checkout the :ref:`best-practices` section and run the example that suits your use case. The section :ref:`advanced` topics will help your understanding for several Grid modules used in the  :ref:`best-practices`. 
+.. seealso:: Try now to port your own application to the Grid. Checkout the :ref:`best-practices` section and run the example that suits your use case. The section :ref:`advanced` will help your understanding for several Grid modules used in the :ref:`best-practices`. 
 
 	Done with the :ref:`basics`, but not sure how to proceed? We can help! Contact us at helpdesk@surfsara.nl.
 
