@@ -1,8 +1,8 @@
 .. _FAQ:
 
-***
-FAQ
-***
+**************************
+Frequently asked questions
+**************************
 
 Check out in this page the most commonly asked questions about Grid. If you still have questions, please contact us at helpdesk@surfsara.nl:
 
@@ -10,9 +10,9 @@ Check out in this page the most commonly asked questions about Grid. If you stil
     :depth: 4  
 
 
-=========
-Questions
-=========
+===============
+Getting started
+===============
 
 .. _where-to-start:
 
@@ -30,66 +30,9 @@ Where can I lookup up Grid terms?
 Check out the file Grid Glossary :download:`pdf <Tutorials/MOOC/slides/L5_W1_Grid_Glossary.pdf>` that contains most of the basic Grid terminology and abbreviations.
 
 
-.. _how-many-cpus:
-
-How many cpu's, nodes does the grid offer?
-===========================================
-
-The grid infrastructure is interconnected clusters in Netherlands and abroad. The users can get access to multiple of these clusters based on their :ref:`Virtual Organisation <join-vo>`.
-
-* Global picture: 170 datacenters in 36 countries: in total more than 330000 compute cores, 500 PB disk, 500 PB tape.
-
-* In the Netherlands NGI_NL infrastructure: 14 datacenters (3 large grid clusters, 11 smaller ones): in total approx 10000 compute cores, 12 PB disk, tape capacity up to 170 PB.
-
-
-.. _how-many-ch:
-
-How many cpu hours are available?
-=================================
-
-The available core hours and storage depend on the funding models. We make tailored agreements to incorporate the user requirements and grant resources based on the applicable funding scheme.
-
-
-.. _how-much-memory:
-
-What is the average amount of memory available per node?
-========================================================
-
-The average memory per node depends on number of cores per node. It is typically 8GB per core, but the nodes vary between 12 and 64 cores per node (48 to 256GB RAM per node).
-
-
-.. _transfer-speed:
-
-What is the data transfer speed between grid locations?
-=======================================================
-
-In the Netherlands NGI_NL infrastructure the transfer speed between grid storage and grid processing cluster (at SURFsara) is up to 500Gbit/s. The transfer speed between nodes is 10Gbit/s and between sites it is typically 10 to 20 Gbit/s.
-
-
-.. _cpu-time:
-
-How can I calculate the total CPU time I consumed?
-==================================================
-
-The total CPU time depends on the amount of cores that your application is using and the wallclock time that the corresponding job takes to finish::
-
-	CPU time = #cores x wallclock(per job) x #jobs	
-
-For example, let's say that a single job takes 12 h to finish on a 4-core machine and we submitted 10,000 of those. The total CPU time spent is::
-
-	CPU time = 4cores x 12h x 10,000 = 480,000 CPU hours ~ 55 CPU years 
-
-
-.. _cpu-efficiency:
-
-System usage and CPU efficiency
-===============================
-
-CPU efficiency is an important factor to detect if the jobs run smoothly on the infrastructure. The CPU efficiency depends on the real CPU usage and the WallClock time for the job to finish::
-
-	CPU efficiency = CPU time / WallClock time
-
-If the CPU was efficiently being used during the job runtime, then a single core job will have efficiency close to 100%. For multicore jobs the efficiency is higher than 100%.
+============
+Certificates
+============
 
 
 .. _change-cert-pwd:
@@ -99,7 +42,7 @@ How can I change my grid certificate password?
 
 Before you create a new private key file with a new password, we recommend you to make a backup of the old userkey.pem file.
 
-* To change your grid certificate password, type:
+To change your grid certificate password, type:
 
 .. code-block:: bash
 
@@ -167,15 +110,18 @@ The permissions on your installed certificate are probably wrong. Set the :ref:`
 Get non-vomsified proxy locally
 ===============================
 
-* To download locally the proxy stored on :ref:`MyProxy server <myproxy-server>` you need to set a passphrase upon creation. To do this, protect your proxy with a MyProxy pass phrase by omitting option "-n"::
+* To download locally the proxy stored on :ref:`MyProxy server <myproxy-server>` you need to set a passphrase upon creation. To do this, protect your proxy with a MyProxy pass phrase by omitting option "-n":
 
-    myproxy-init -d
+  .. code-block:: bash
+
+     myproxy-init -d
     
-It will first ask your grid certificate password and then prompt you to enter a MyProxy passphrase twice. You will use the latter passphrase to download your proxy. 
+  It will first ask your grid certificate password and then prompt you to enter a MyProxy 
+  passphrase twice. You will use the latter passphrase to download your proxy. 
 
-Here is an example of the displayed output:
+  Here is an example of the displayed output:
 
-.. code-block:: bash
+  .. code-block:: bash
     
     # Your identity: /O=dutchgrid/O=users/O=sara/CN=Homer Simpson
     # Enter GRID pass phrase for this identity:
@@ -192,9 +138,9 @@ Here is an example of the displayed output:
 
     myproxy-get-delegation -d
 
-Here is an example of the displayed output:
+  Here is an example of the displayed output:
 
-.. code-block:: bash
+  .. code-block:: bash
 
     # Enter MyProxy pass phrase:
     # A credential has been received for user /O=dutchgrid/O=users/O=sara/CN=Homer Simpson in /tmp/x509up_u39111. 
@@ -207,9 +153,9 @@ Note that the downloaded proxy will not include the voms attributes.
 How can I renew my certificate?
 ===============================
 
-The personal grid certificates are valid for a year. This means that every year you need to renew your personal grid certificate. The procedure for renewing your certificate depends on your CA, Digicert or Dutchgrid.
+The personal grid certificates are valid for a year. This means that every year you need to renew your personal grid certificate. The procedure for renewing your certificate depends on your CA, either Digicert or Dutchgrid.
 
-* For *Digicert* grid certificate, you can request a new certificate anytime from the `DigiCert portal`_. Follow this guide to :ref:`obtain and install a Digicert grid certificate <digicert>`.
+* For *Digicert* grid certificate, you can request a new certificate anytime from the `DigiCert portal <https://digicert.com/sso>`_. Follow this guide to :ref:`obtain and install a Digicert grid certificate <digicert>`.
 
 * For *Dutchgrid* grid certificate, you have two options:
 
@@ -280,6 +226,73 @@ To find out who the certificate belongs to, use:
    openssl x509 -in usercert.pem -noout -subject
 
 
+
+===============
+Using resources 
+===============
+
+
+.. _how-many-cpus:
+
+How many cpu's, nodes does the grid offer?
+===========================================
+
+The grid infrastructure is interconnected clusters in Netherlands and abroad. The users can get access to multiple of these clusters based on their :ref:`Virtual Organisation <join-vo>`.
+
+* Global picture: 170 datacenters in 36 countries: in total more than 330000 compute cores, 500 PB disk, 500 PB tape.
+* In the Netherlands NGI_NL infrastructure: 14 datacenters (3 large grid clusters, 11 smaller ones): in total approx 10000 compute cores, 12 PB disk, tape capacity up to 170 PB.
+
+
+.. _how-many-ch:
+
+How many cpu hours are available?
+=================================
+
+The available core hours and storage depend on the funding models. We make tailored agreements to incorporate the user requirements and grant resources based on the applicable funding scheme.
+
+
+.. _how-much-memory:
+
+What is the average amount of memory available per node?
+========================================================
+
+The average memory per node depends on number of cores per node. It is typically 8GB per core, but the nodes vary between 12 and 64 cores per node (48 to 256GB RAM per node).
+
+
+.. _transfer-speed:
+
+What is the data transfer speed between grid locations?
+=======================================================
+
+In the Netherlands NGI_NL infrastructure the transfer speed between grid storage and grid processing cluster (at SURFsara) is up to 500Gbit/s. The transfer speed between nodes is 10Gbit/s and between sites it is typically 10 to 20 Gbit/s.
+
+
+.. _cpu-time:
+
+How can I calculate the total CPU time I consumed?
+==================================================
+
+The total CPU time depends on the amount of cores that your application is using and the wallclock time that the corresponding job takes to finish::
+
+	CPU time = #cores x wallclock(per job) x #jobs	
+
+For example, let's say that a single job takes 12 h to finish on a 4-core machine and we submitted 10,000 of those. The total CPU time spent is::
+
+	CPU time = 4cores x 12h x 10,000 = 480,000 CPU hours ~ 55 CPU years 
+
+
+.. _cpu-efficiency:
+
+System usage and CPU efficiency
+===============================
+
+CPU efficiency is an important factor to detect if the jobs run smoothly on the infrastructure. The CPU efficiency depends on the real CPU usage and the WallClock time for the job to finish::
+
+	CPU efficiency = CPU time / WallClock time
+
+If the CPU was efficiently being used during the job runtime, then a single core job will have efficiency close to 100%. For multicore jobs the efficiency is higher than 100%.
+
+
 .. _available-se:
 
 How can I find all the available LSG Storage Elements and get their SURLS?
@@ -289,7 +302,7 @@ How can I find all the available LSG Storage Elements and get their SURLS?
 
   .. code-block:: bash
 
-	lcg-infosites --vo lsgrid ce 
+	lcg-infosites --vo lsgrid se 
 	
 * To specify a specific SURL (srm URL), use the following syntax:
 
@@ -306,11 +319,14 @@ How can I find all the available LSG Storage Elements and get their SURLS?
 	srm://gb-se-emc.erasmusmc.nl:8446/dpm/erasmusmc.nl/home/lsgrid
 	srm://gb-se-kun.els.sara.nl:8446/dpm/els.sara.nl/home/lsgrid
 	srm://gb-se-lumc.lumc.nl:8446/dpm/lumc.nl/home/lsgrid
-	srm://gb-se-nki.els.sara.nl:8446/dpm/els.sara.nl/home/lsgrid
-	srm://gb-se-rug.sara.usor.nl:8446/dpm/sara.usor.nl/home/lsgrid
 	srm://gb-se-tud.ewi.tudelft.nl:8446/dpm/ewi.tudelft.nl/home/lsgrid	
 	srm://gb-se-wur.els.sara.nl:8446/dpm/els.sara.nl/home/lsgrid
 	srm://srm.grid.sara.nl:8443/pnfs/grid.sara.nl/data/lsgrid
+        srm://se.lsg.bcbr.uu.nl:8446/dpm/lsg.bcbr.uu.nl/home/lsgrid
+        srm://se.lsg.maastrichtuniversity.nl:8446/dpm/lsg.maastrichtuniversity.nl/home/lsgrid
+        srm://se.lsg.psy.vu.nl:8446/dpm/lsg.psy.vu.nl/home/lsgrid
+	srm://gb-se-rug.sara.usor.nl:8446/dpm/sara.usor.nl/home/lsgrid
+
 
 
 .. _available-ce:
@@ -354,6 +370,35 @@ In order to run pbs jobs on LSG that last more than 36 hours, you need to use ``
 * If you specify a queue (``-q`` flag) it is sufficient to get your jobs run for 72 hours.
 
 
+.. _troubleshooting:
+
+===============
+Troubleshooting
+===============
+
+.. _general-troubleshooting-steps:
+
+General troubleshooting steps
+=============================
+
+*Don't hesitate to contact us when things go wrong!* We're happy to help you overcome the difficulties that every grid user faces.
+
+In order to assist you better, we have a few troubleshooting steps that may already get you going and otherwise may help us to help you.
+
+* Check the output of ``voms-proxy-info -all``. Is your proxy still valid? Does it have the correct attributes for the work you're doing?
+* Try running your command with higher debugging level or verbosity.
+
+  .. code-block:: bash
+
+     $ glite-wms-job-submit --debug ...
+     $ srmcp -debug ...
+     $ gfal-copy --verbose ...
+     $ globus-url-copy -debugftp -verbose-perf -verbose ...
+     $ curl --verbose ...
+  
+* Is the resource you're using in downtime? Downtimes are announced in the `GOCDB (Grid Operations Center Database) <https://goc.egi.eu/portal/>`_ (certificate in your browser required). There is also a `list of downtimes of the Dutch grid sites <http://web.grid.sara.nl/cgi-bin/eInfra.py>`_.
+
+
 .. _get-log:
 
 How can I get more logging info for my job?
@@ -372,6 +417,36 @@ And if you use a file to store your jobs, run:
 	glite-wms-job-logging-info -v 2 -i jobIds # replace jobIds with your file
 
 
-.. Links:
-.. _`DigiCert portal`: https://digicert.com/sso
-  	
+.. _stalling-transfers:
+
+File transfers don't start
+==========================
+
+Occasionally, transfers are stuck when 0 bytes have been transferred. There are some common causes for stalled transfers.
+
+* A firewall blocks the ports for the data channel. If you use ``srmcp``, specify ``--server_mode=passive``. If that doesn't help, check whether your firewall allows outgoing traffic to ports 20000 to 25000 (gridFTP data channel range).
+
+* You've reached the maximum number of transfers for the storage pools that have been allocated to you. All transfers beyond the maximum will be queued, until previous transfers finish to make 'transfer slots' available. This could mean that some of your jobs are wasting CPU time while they wait for input files. This is not efficient. It's better to reduce the number of concurrent transfers so that you don't reach the maximum.
+
+  You can see whether this happens at `these graphs <http://web.grid.sara.nl/dcache.php?r=hour#transfers>`_. A red color ('Movers queued') means that there are stalling transfers.
+
+* You're transferring files from/to outside SURFsara, and your endpoint support a MTU (network packet) size of 9000, but the network path doesn't. Control traffic passes through because it consists of small packets. But data traffic consists of large packets and these are blocked.
+
+  Some tools to test this:
+
+  .. code-block:: bash
+
+     # Run this from your endpoint of the transfer; adjust the value to find the limit.
+     # Check first whether your system supports a MTU of 9000.
+     ping -M do -s 8972 gridftp.grid.sara.nl
+     
+     # This command tells you what the supported MTU value is.
+     tracepath gridftp.grid.sara.nl
+
+  Another good tool for testing the network is iperf. We'll start an iperf server at your request so that you can test against it.
+  
+  .. code-block:: bash
+  
+     iperf -c rabbit1.grid.sara.nl --port 24000 --parallel 4
+
+  A fix for Linux servers is to enable mtu_probing. This enables the Linux kernel to select the best MTU value for a certain network route.
