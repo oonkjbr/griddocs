@@ -14,9 +14,6 @@ This page presents a PiCaS pilot job example:
 Problem description
 ===================
 
-.. sidebar:: More about Picas in practice?
-
-		.. seealso:: Check out our mooc videos Picas examples :ref:`Part I <mooc-picas-example1>` and :ref:`Part II <mooc-picas-example2>`.
 
 In this example we will implement the following pilot job workflow:
  
@@ -30,7 +27,6 @@ Prerequisites
 =============
 To be able to run the example you must have:
 
-* All the three Grid :ref:`prerequisites` (User Interface machine, Grid certificate, VO membership) 
 * An account on PiCaS server (send your request to <helpdesk@surfsara.nl>)
 
 
@@ -191,7 +187,7 @@ It will recursively generate an image based on parameters received from PiCas. A
 
    $convert output_token_6 output_token_6.png # replace with your output filename
     
-For the tokens that are processed on Grid, you can send the output to the :ref:`Grid Storage <grid-storage>` or some other remote location.
+For the tokens that are processed on Grid, you can send the output to the grid storage or some other remote location.
 
 
 Checking failed jobs

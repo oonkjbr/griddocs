@@ -7,10 +7,10 @@
 .. _contents:
 
 ******************
-Grid documentation
+HT documentation
 ******************
 
-Welcome to the documentation for using the Grid services at `SURFsara`_. The information in this tutorial will help you get started with the Grid, learn best techniques to successfully port your application to the Grid infrastructure and stay up-to-date with our system developments. We welcome your comments at helpdesk@surfsara.nl or your :ref:`contribution <doc-howto>` to help us improve the documentation.
+Welcome to the documentation for using the HT at `SURFsara`_. The information in this tutorial will help you get started with the HT and learn best techniques. We welcome your comments at helpdesk@surfsara.nl or your :ref:`contribution <doc-howto>` to help us improve the documentation.
 
 .. sidebar:: Need help?
 
@@ -25,57 +25,46 @@ General
 =======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    
-   Pages/General/about_the_grid
-   Pages/General/national_grid
-   Pages/General/life_science_grid
-   Pages/General/grid_services
-   Pages/General/grant_access.rst
-   
+   Pages/General/LifeCycle
 
-======        
-Basics
-======
+
+
+==============
+Getting Access
+==============
+.. _getting-access:
+
+.. toctree::
+   :maxdepth: 2
+   
+   Pages/Access/start_a_project
+   Pages/Access/join_a_project
+   Pages/Access/Logging_in
+
+
+==========
+Data
+==========
 
 .. toctree::
    :maxdepth: 2
 
-   Pages/Basics/prerequisites
-   Pages/Basics/first_grid_job
+   Pages/Basics/data_organisation
+   Pages/Basics/transfer_data
    
-   
-.. _advanced:
-   
+
+
+===============       
+Sumbitting jobs
 ===============
-Advanced topics 
-===============
-   
+
 .. toctree::
    :maxdepth: 2
+
+   Pages/Basics/submitting_jobs
    
-   Pages/Advanced/grid_software
-   Pages/Advanced/grid_storage
-
-.. toctree::
-   :maxdepth: 1
-
-   Pages/Advanced/grid_job_requirements
-   Pages/Advanced/grid_authentication
-   Pages/Advanced/grid_certificates
-   Pages/Advanced/host_certificates
-
-.. _local-lsg:
-
-===================================
-Local jobs on the Life Science Grid
-===================================
-
-.. toctree::
-   :maxdepth: 1
-
-   Pages/PBS/life_science_clusters
-   Pages/PBS/pbs
 
 
 .. _best-practices:
@@ -87,9 +76,7 @@ Best practices
 .. toctree::
    :maxdepth: 1
    
-   Pages/Practices/bootstrap
    Pages/Practices/pilot_jobs
-   Pages/Practices/data_replication
 
  
 .. _service-implementation:
@@ -113,10 +100,6 @@ Tutorials
 .. toctree::
    :hidden:
    
-   Pages/Tutorials/MOOC/mooc
-   
-* :ref:`mooc`
-* `gLite tutorial 2008 <http://www.dutchgrid.nl/events/tutorial08/agenda/Tutorial2008Handout.pdf>`_
 
 
 ==========================

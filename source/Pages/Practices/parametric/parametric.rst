@@ -14,7 +14,7 @@ The :ref:`pilot jobs <pilot-jobs>` use the technique of parametric jobs for the 
 About
 =====
 
-Pilot jobs are submitted to the Grid with a specific :ref:`Job Description Language <jdl>` type called ``Parametric``. A parametric job causes a set of jobs to be generated from one :abbr:`JDL (Job Description Language)` file.
+Pilot jobs are submitted to the Grid with a parametric job.  A parametric job causes a set of jobs to be generated from one job.
 
 
 =======

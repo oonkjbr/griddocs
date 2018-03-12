@@ -2,8 +2,6 @@
    :hidden:
 
    parametric/parametric
-   topos/topos_overview
-   topos/topos_example
    picas/picas_overview
    picas/picas_example
    
@@ -21,10 +19,6 @@ In this page we will show you how to run pilot jobs on the Grid and track the st
 ================
 About pilot jobs
 ================
-
-.. sidebar:: More about Pilot jobs?
-
-		.. seealso:: Check out our mooc video :ref:`mooc-pilot-jobs` 
 
 When you have tens, hundreds of jobs that you submit to the Grid you may find yourself writing software which checks the status of all those jobs and tries to find out which ones have succeeded and which ones should be resubmitted.
 
@@ -73,7 +67,7 @@ A second advantage of using pilot jobs is the reduced overhead of job submission
 Pilot job submission
 ====================
 
-To be able to submit multiple pilot jobs at once, they are submitted to the Grid with a specific :ref:`JDL <jdl>` type called ``Parametric``. Learn more about this technique in :ref:`parametric jobs <parametric-jobs>` section. 
+To be able to submit multiple pilot jobs at once, they are submitted to the Grid with a specific jdl type called ``Parametric``. Learn more about this technique in :ref:`parametric jobs <parametric-jobs>` section. 
   
   
 .. _pilot-frameworks:  
@@ -82,9 +76,8 @@ To be able to submit multiple pilot jobs at once, they are submitted to the Grid
 Pilot Job Frameworks
 ====================
 
-There are several pilot frameworks for the Grid. At SURFsara we support two of them, ``PiCaS`` and ``ToPoS``:
+There are several pilot frameworks for the Grid. At SURFsara we support ``PiCaS`` and ``stopos``:
 
- * :ref:`topos-overview`
- * :ref:`topos-example`
+
  * :ref:`picas-overview`
  * :ref:`picas-example`

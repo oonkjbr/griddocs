@@ -70,7 +70,7 @@ Shell commands
      ## Comments should be prefixed with a double ``#``.
 
 * To display the contents of a shell script, use ``.. code-block:: bash``.
-* To display perl, use ``.. code-block:: perl``. If a page only displays perl code, you can use ``.. highlight:: perl`` once and then ``::`` for each code block. See :ref:`topos-perl-client` for an example.
+* To display perl, use ``.. code-block:: perl``. If a page only displays perl code, you can use ``.. highlight:: perl`` once and then ``::`` for each code block.
 * To display configuration files, use ``.. code-block:: cfg``.
 
 
