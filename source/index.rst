@@ -41,6 +41,7 @@ Getting Access
    
    Pages/Access/start_a_project
    Pages/Access/join_a_project
+   Pages/Access/allow_a_new_user_in_project
    Pages/Access/Logging_in
 
 
